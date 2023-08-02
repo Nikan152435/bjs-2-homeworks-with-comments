@@ -20,7 +20,7 @@ Student.prototype.setSubject = function(subjectName) {//Мы можем доба
 newStudent1.setSubject('history');//Вызываем newStudent1 обращаемся через точку к setSubject и передаем параметры history.Появилось новое свойство setSubject: history(параметр)
 
 Student.prototype.addMarks = function(...marks) {//Добавляем новый метод addMarks через прототайп присваиваем функцию с оператором spread, разделяя значения на отдельные составляющие
-    if (this.hasOwnProperty('marks') && this.marks !== []) {//Проверяем значение marks методом проверки обьектов hasOwnProperty и значение самого обьекта marks не равны пустому маассиву, то
+    if (this.hasOwnProperty('marks') && this.marks !== 0) {//Проверяем значение marks методом проверки обьектов hasOwnProperty и значение самого обьекта marks не равны пустому маассиву, то
         this.marks.push(...marks);//обращаемся к this.marks добавляем полученное значение через метод push 
     } else {
       return 0;
