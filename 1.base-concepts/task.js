@@ -35,15 +35,17 @@ function calculateTotalMortgage(percent, contribution, amount, countMonths) {
 
 
   percent = percent / 100; // Преобразование процентной ставки в десятичную форму
-  let loanAmount = amount - contribution; // Тело кредита
+  let loanAmount = amount - contribution; // Тело кредита=сумма кредита-первоначальный взнос
   let monthlyInterest = percent / 12; // Месячная процентная ставка
 
   let monthlyPayment =
     loanAmount *
     (monthlyInterest +
-      monthlyInterest / (Math.pow(1 + monthlyInterest, countMonths) - 1));// Я вот тут не 
-//поняла как мы посчитали Месячный платеж=== 
-//Тело кредита *(Месячная процент ставка+ Месячная процентная ставка/(Math.pow(1 + //monthlyInterest, countMonths) - 1)). Итого я не //поняла вот эту запись
+      monthlyInterest / (Math.pow(1 + monthlyInterest, countMonths) - 1));// Math.pow() это возведение первого аргумента 
+// в степень (второй аргумент). 1 прибавляем для того, чтобы получить не только % от ежемесячн. платежа, а итоговую сумму, 
+//т.е. исходный платёж + процент от этого платежа. 
+
+//Тело кредита *(Месячная процент ставка+ Месячная процентная ставка/(Math.pow(1 + monthlyInterest, countMonths) - 1))
 //Math.pow(1 + monthlyInterest, countMonths) - 
   
   let totalPayment = monthlyPayment * countMonths; // Общая сумма выплат
