@@ -1,25 +1,28 @@
 ﻿﻿//TASK 1
 function parseCount(value) {
-    let result = Number.parseFloat(value);
+    let result = Number.parseFloat(value);//Number.parseFloat() - это встроенная функция JavaScript, которая пытается преобразовать переданное ей значение в число с плавающей точкой (число с десятичными знаками).
     if (isNaN(result)) {
-        throw new Error('Невалидное значение');    
+        throw new Error('Невалидное значение'); //Если результат преобразования равен NaN (не число), тогда функция выбрасывает исключение с сообщением "Невалидное значение", используя конструктор Error.
     }  
-    return result;
+    return result; //В противном случае, когда результат успешен, функция возвращает полученное число.  
 }
 
 // console.log(parseCount('3215'));
 
-function validateCount(value) {
+function validateCount(value) { //Функция validateCount также принимает входное значение value, которое нужно распарсить.
     try {
-        return parseCount(value);
+        return parseCount(value); // Функция parseCount принимает входное значение value, Затем она вызывает функцию parseCount(value) внутри  блока try.
+//Если вызов parseCount(value) проходит успешно (то есть  значение успешно парсится), тогда функция  validateCount возвращает полученное число.
     } catch (error) {
-        return error;
+        return error; //В противном случае, когда функция parseCount выбрасывает исключение (ошибка) из-за невалидного значения, функция validateCount перехватывает это исключение в блоке catch.
+//Когда исключение перехватывается, функция validateCount возвращает саму ошибку, которую выбросила функция parseCount. Это позволяет обработать ошибку в другой части кода, если нужно. 
     }
 }
 
 console.log(validateCount(10));
 
 //TASK 2
+//Класс Triangle представляет треугольник с тремя сторонами a, b и c. При создании объекта треугольника через конструктор класса, происходит проверка существования треугольника с помощью метода validateTriangle(). Если треугольник с такими сторонами не существует (нарушается неравенство треугольника), выбрасывается исключение.
 class Triangle {
     constructor(a, b, c) {
         this.a = a;                
@@ -28,18 +31,19 @@ class Triangle {
         this.validateTriangle(); // Проверка на существование треугольника                 
     }
 
-    validateTriangle() {
+    validateTriangle() { // // Проверка на существование треугольника
         if (this.a + this.b <= this.c || this.b + this.c <= this.a || this.a + this.c <= this.b) {
             throw new Error("Треугольник с такими сторонами не существует");
         }
     }
 
-    //Периметр
+
+    // Геттер для получения периметра треугольника
     get perimeter() {
         return this.a + this.b + this.c;    
     }
 
-    //Площадь
+    // Геттер для получения площади треугольника
     get area() {
         const p = this.perimeter / 2;
         const area = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
@@ -47,12 +51,12 @@ class Triangle {
     }
 
 }
-
+// Функция для создания объекта треугольника или возврата сообщения об ошибке
 function getTriangle(a, b, c) {
     try {
-      return new Triangle(a, b, c);
+      return new Triangle(a, b, c); // Создаем объект треугольника с переданными сторонами
     } catch (error) {
-      return {
+      return {  // Если возникла ошибка, возвращаем объект с геттерами area и perimeter, которые вернут сообщение об ошибке
         get area() {
           return "Ошибка! Треугольник не существует";
         },
@@ -63,12 +67,25 @@ function getTriangle(a, b, c) {
     }
   }
 
-const triangle = new Triangle(
+const triangle = new Triangle( // Создание объекта треугольника
     2,
     5,
     5
 );
 
-console.log(triangle);
-console.log(triangle.perimeter);
-console.log(triangle.area);
+console.log(triangle); // Вывод объекта треугольника
+console.log(triangle.perimeter);// Вывод периметра треугольника (2+5+5 = 12)
+console.log(triangle.area);  // Вывод площади треугольника 
+//(по формуле Герона, с округлением до трех знаков после запятой) 
+
+//perimeter: возвращает периметр треугольника - сумму всех трех сторон.
+//area: возвращает площадь треугольника, вычисленную по формуле Герона.
+//Функция getTriangle предназначена для создания объекта треугольника 
+//или возврата сообщения об ошибке, если треугольник с такими сторонами 
+//не существует. В случае возникновения исключения при создании объекта 
+//через конструктор класса, функция возвращает объект с геттерами area и 
+//perimeter, которые возвращают сообщение об ошибке "Ошибка! Треугольник 
+//не существует".
+
+//В итоге, создав объект треугольника и вызвав геттеры perimeter и area,
+// мы получим периметр и площадь треугольника соответственно. 
