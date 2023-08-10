@@ -101,10 +101,24 @@ function averageEvenElementsWorker(...arr) { //Пишем функцию average
 let maxWorkerResult = -Infinity; // п.2// присваиваем минимальное числовое значение-это понятно
 
 for (let i = 0; i < arrOfArr.length; i++) { // цикл перебора элементов массива, п.3 
-  const maxFunctionResult = func(...arrOfArr[i]); // сначала вызывается ф-ия, имя которой передали, ей на вход передаётся текущий массив, который разворачивается в строку его элементов. Сделано это для того, что ф-ии, написанные ранее, принимают на вход неопределённое кол-во аргументов и собирают их в массив, с которым и работают внутри. п.4// 
+  const maxFunctionResult = func(...arrOfArr[i]); // сначала вызывается ф-ия, имя которой передали, 
+// ей на вход передаётся текущий массив, который разворачивается в строку его элементов. Сделано это для того, 
+//что ф-ии, написанные ранее, принимают на вход неопределённое кол-во аргументов и собирают их в массив, 
+// с которым и работают внутри. п.4// 
+// Можно чз др цикл for (let el of arrOfArr) {    } перебирают по значению , прменяется лучше к массиивам
+//let maxWorkerResult = -Infinity;      
+//for (let el of arrOfArr) {    
+  //const maxFunctionResult = func(...el);    
+      //if (maxFunctionResult > maxWorkerResult) {     
+         //maxWorkerResult = maxFunctionResult;    
+ // }  
+ // }   return maxWorkerResult; 
+ //}
+//нельзя for in применяется лучше к обьектам
   
-  if (maxFunctionResult > maxWorkerResult) { // выявление максимального значения, п.5 Проверяем, является ли полученное значение больше текущего максимального значения
-    maxWorkerResult = maxFunctionResult; // п.6
+  if (maxFunctionResult > maxWorkerResult) { // выявление максимального значения,
+//  п.5 Проверяем, является ли полученное значение больше текущего максимального значения
+//maxWorkerResult = maxFunctionResult; // п.6
   }
 }
 //console.log(maxWorkerResult); // необязательная строка, можно удалить.
